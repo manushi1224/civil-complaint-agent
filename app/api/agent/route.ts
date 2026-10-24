@@ -3,8 +3,6 @@ import { type Content, type Part } from "@google/genai";
 import { ai, GEMINI_MODEL } from "@/lib/gemini";
 import { civicTools, executeToolCall } from "@/lib/tools";
 
-export const runtime = "nodejs";
-
 const SYSTEM_INSTRUCTION = `You are the City Civic Complaint Agent. Your mission is to help citizens report civic issues (potholes, garbage dumps, broken streetlights, waterlogging) quickly and track their grievances.
 When provided an image:
 - Carefully inspect visual evidence to diagnose the exact issue, hazard level, and assign the proper department (Roads & Infrastructure, Solid Waste Management, Electricity & Streetlights, or Stormwater & Drainage).
