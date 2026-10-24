@@ -81,9 +81,14 @@ export default function CivicComplaintPage() {
       id: "initial-welcome",
       role: "agent",
       text: "👋 Welcome to the City Civic Complaint Agent! Powered by Google Gemini and Cloud Firestore, I autonomously inspect civic hazards from photos, diagnose issues, assign the appropriate municipal department, and register official grievance tickets in real time.\n\nTry clicking any of the 1-Click Simulation Triggers above, upload your own photo, or track an existing ticket by asking: 'What's the status of ticket CIVIC-...'!",
-      timestamp: new Date().toISOString(),
+      timestamp: "",
     },
   ]);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
   const [inputText, setInputText] = useState("");
   const [selectedImage, setSelectedImage] = useState<ImageUploadState | null>(null);
   const [isAgentProcessing, setIsAgentProcessing] = useState(false);
@@ -403,7 +408,7 @@ export default function CivicComplaintPage() {
   };
 
   const formatTimestamp = (iso?: string) => {
-    if (!iso) return "Just now";
+    if (!iso || !isMounted) return "Just now";
     try {
       const d = new Date(iso);
       if (isNaN(d.getTime())) return "Recently";
