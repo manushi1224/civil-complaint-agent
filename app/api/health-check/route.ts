@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { db } from "@/lib/firebase";
 import { ai } from "@/lib/gemini";
 
+
 export async function GET() {
   try {
     const isFirebaseReady = Boolean(db);
